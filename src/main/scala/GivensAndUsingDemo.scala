@@ -1,3 +1,12 @@
+/*
+This demo shows how to use dependency injection (DI) by using the "given" and "using" in Scala 3.
+
+Here I have a trait for a DAO and two, mongo and mysql, implementations of this DAO.
+
+Then I have a trait for a service with its implementation that needs the DAO trait to call the database.
+
+In the main app, I import the desired dao impl and then call the service and it automatically picks my desired (imported) dao impl with the dao trait.
+ */
 object GivensAndUsingDemo:
   @main def GivensDemo(): Unit =
     import UserDaoImpl.mysql // import ".mongo" to use the mongo db dao
