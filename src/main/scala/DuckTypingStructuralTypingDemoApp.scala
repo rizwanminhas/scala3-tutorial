@@ -45,6 +45,12 @@ object DuckTypingStructuralTypingDemoApp {
     class Obj(elems: (String, Any)*) extends Selectable:
       private val fields = elems.toMap
       def selectDynamic(name: String): Any = fields(name)
+      def applyDynamic(name: String)(args: Any*): Any = {
+        println("applyDynamic is called")
+        println(name)
+        println(args)
+        0
+      }
 
     type Person = Obj {
       val name: String
@@ -61,4 +67,5 @@ object DuckTypingStructuralTypingDemoApp {
     ).asInstanceOf[Person]
 
     println(s"${person.name} is ${person.age} years old. ${person.foo}, ${person.baz}")
+    println(person.age.applyDynamic("1")("2"))
 }
